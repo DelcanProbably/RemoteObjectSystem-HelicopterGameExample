@@ -6,6 +6,10 @@ public class RemoteHelicopter : MonoBehaviour
     [SerializeField] RemoteSound[] propellerSounds;
     [SerializeField] RemoteSound deathSound;
 
+    private void Awake() {
+        rAudioSource = GetComponent<RemoteAudioSource>();
+    }
+
     public void PlayPropellerSound(int i) {
         rAudioSource.Play(propellerSounds[i]);
     }

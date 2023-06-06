@@ -43,7 +43,7 @@ public class RemoteObject : MonoBehaviour
 
     void SendRawCommand (string command) {
         // TODO: why go through NetHandler instead of just directly calling the RemotePi??? idk?
-        RemoteNetHandler.SendNetMessage(remote, command);
+        if (remote != null) RemoteNetHandler.SendNetMessage(remote, command);
     }
 
     // Send da command

@@ -42,6 +42,9 @@ public class Helicopter : MonoBehaviour
 
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();
+
+        // ROS
+        remoteHelicopter = GetComponent<RemoteHelicopter>();
      
     }
     
@@ -154,6 +157,7 @@ public class Helicopter : MonoBehaviour
         Instantiate(explosionParticleEffect, transform.position, Quaternion.identity);
 
         SoundManager.PlayClip(deathClip);
+        remoteHelicopter.OnDeath();
 
         if (heldSoldiers > 0) {
             GameManager.AddPoints(heldSoldiers * GameManager.lostSoldierPoints, transform.position);
