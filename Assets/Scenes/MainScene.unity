@@ -2625,6 +2625,46 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 458013598, guid: cacfcc1b0bead3d46bd90e9c20cdacdf, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: b6bf13bd5ad6d4445ac63790ca7c31e7, type: 2}
+    - target: {fileID: 458013598, guid: cacfcc1b0bead3d46bd90e9c20cdacdf, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 652988690, guid: cacfcc1b0bead3d46bd90e9c20cdacdf, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: b6bf13bd5ad6d4445ac63790ca7c31e7, type: 2}
+    - target: {fileID: 652988690, guid: cacfcc1b0bead3d46bd90e9c20cdacdf, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -2065802887526839702, guid: b6bf13bd5ad6d4445ac63790ca7c31e7, type: 2}
+    - target: {fileID: 979797717, guid: cacfcc1b0bead3d46bd90e9c20cdacdf, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: b6bf13bd5ad6d4445ac63790ca7c31e7, type: 2}
+    - target: {fileID: 979797717, guid: cacfcc1b0bead3d46bd90e9c20cdacdf, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -2065802887526839702, guid: b6bf13bd5ad6d4445ac63790ca7c31e7, type: 2}
+    - target: {fileID: 1241702201, guid: cacfcc1b0bead3d46bd90e9c20cdacdf, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: b6bf13bd5ad6d4445ac63790ca7c31e7, type: 2}
+    - target: {fileID: 1241702201, guid: cacfcc1b0bead3d46bd90e9c20cdacdf, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -2065802887526839702, guid: b6bf13bd5ad6d4445ac63790ca7c31e7, type: 2}
+    - target: {fileID: 6466110974094201711, guid: cacfcc1b0bead3d46bd90e9c20cdacdf, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: b6bf13bd5ad6d4445ac63790ca7c31e7, type: 2}
+    - target: {fileID: 6466110974094201711, guid: cacfcc1b0bead3d46bd90e9c20cdacdf, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -2065802887526839702, guid: b6bf13bd5ad6d4445ac63790ca7c31e7, type: 2}
     - target: {fileID: 6466110974992424552, guid: cacfcc1b0bead3d46bd90e9c20cdacdf, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -6546,3 +6586,19 @@ MonoBehaviour:
   debugIPAddress: 
   remoteName: Helicopter
   remoteIcon: {fileID: -555744780623910725, guid: 36e8856ef822f6c45abccec98722d227, type: 3}
+--- !u!114 &8194046849370329861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8194046849370329851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d8e8b9b3e9ff254193a510164c9f636, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  propellerSounds:
+  - {fileID: 11400000, guid: c479f0f494cf6e24cb1f7b6bfd063d07, type: 2}
+  - {fileID: 11400000, guid: 1512262a13d5b62488ecb31d4697481f, type: 2}
+  deathSound: {fileID: 11400000, guid: 5d39b23e9bec6e64db2d619d59c1d4f8, type: 2}

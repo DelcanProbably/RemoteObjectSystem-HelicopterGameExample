@@ -37,6 +37,9 @@ public class Helicopter : MonoBehaviour
     float speedTimer;
     [SerializeField] float speedBonusThreshold = 5.0f;
 
+    // ROS
+    RemoteHelicopter remoteHelicopter;
+
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();
      
@@ -84,6 +87,8 @@ public class Helicopter : MonoBehaviour
             if (!alive) continue;
 
             SoundManager.PlayClip(chopperClips[chopperClip]);
+            // ROS
+            remoteHelicopter.PlayPropellerSound(chopperClip);
             chopperClip++;
             if (chopperClip == chopperClips.Length) chopperClip = 0;
         }
