@@ -89,8 +89,9 @@ public class Helicopter : MonoBehaviour
             yield return new WaitForSeconds(delay);
             if (!alive) continue;
 
-            SoundManager.PlayClip(chopperClips[chopperClip]);
             // ROS
+            // DON'T PLAY SOUND - this is now handled by ROS
+            // SoundManager.PlayClip(chopperClips[chopperClip]);
             remoteHelicopter.PlayPropellerSound(chopperClip);
             chopperClip++;
             if (chopperClip == chopperClips.Length) chopperClip = 0;
@@ -156,7 +157,9 @@ public class Helicopter : MonoBehaviour
 
         Instantiate(explosionParticleEffect, transform.position, Quaternion.identity);
 
-        SoundManager.PlayClip(deathClip);
+        // ROS
+        // DO NOT play sound - managed by ROS
+        // SoundManager.PlayClip(deathClip);
         remoteHelicopter.OnDeath();
 
         if (heldSoldiers > 0) {
