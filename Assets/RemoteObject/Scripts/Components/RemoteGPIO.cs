@@ -7,11 +7,11 @@ public class RemoteGPIO : RemoteComponent
 {
 
     protected override void RemoteComponentAwake() {
-        moduleName = "gpio";
+        moduleKeyword = "gpio";
     }
 
     public void SetOutputPin(int pin, string mode) {
-        SendCommand("setpin", new string[] { mode }); // TODO: this whole args thing is getting out of hand.
+        SendCommand("setpin", mode);
     }
 
 }

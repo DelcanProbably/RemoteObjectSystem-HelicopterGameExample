@@ -8,24 +8,26 @@ using UnityEngine;
 /// </summary>
 [RequireComponent(typeof(RemoteObject))]
 public abstract class RemoteComponent : MonoBehaviour {
-    // The name of this module. MUST be set by child classes.
-    protected string moduleName;
+    // The base command for this module. MUST be set by child classes.
+    protected string moduleKeyword;
     // The RemoteObject this component is attached to.
-    protected RemoteObject remote;
+    protected RemoteObject remoteObject;
     // If true, will fallback to emulating the intended result through the local system.
     protected bool fallbackMode {get {
-        return remote.fallbackMode;
+        return remoteObject.fallbackMode;
     }}
     
     private void Awake() {
-        remote = GetComponent<RemoteObject>();
+        remoteObject = GetComponent<RemoteObject>();
         // Add this components to remote's component list
         // This could probably be turned into a function to avoid the public list
-        remote.rComponents.Add(this);
+        remoteObject.rComponents.Add(this);
         RemoteComponentAwake();
     }
     // Run in Awake after RemoteComponent parent setup.
     protected abstract void RemoteComponentAwake();
+
+    public virtual void OnLinkUpdated() {}
 
     public virtual void ActivateFallback() {
         Debug.LogWarning(name + " - fallback mode has been activated on a RemoteComponent but there is no implementation.");
@@ -35,7 +37,6 @@ public abstract class RemoteComponent : MonoBehaviour {
         Debug.LogWarning(name + " - fallback mode has been deactivated on a RemoteComponent but there is no implementation.");
     }
 
-    // TODO: bit redundant innit - rewrite RemoteArgs system to get rid of this shenanigans
     protected void SendCommand(string func, string[] args) {
 
         if (fallbackMode) {
@@ -44,12 +45,10 @@ public abstract class RemoteComponent : MonoBehaviour {
 
         // this isn't perfect, but it will work fine.
         // Not sure what the perfect implementation of this kind of system is.
-        remote.SendCommand(moduleName, func, args);
+        remoteObject.SendCommand(moduleKeyword, func, args);
     }
-    protected void SendCommand(string func, RemoteAsset remoteAsset) {
-        SendCommand(func, remoteAsset.AsArgs());
-    }
-    protected void SendCommand(string func, RemoteArgs remoteArgs) {
-        SendCommand(func, remoteArgs.AsArgs());
+
+    protected void SendCommand(string func, string arg) {
+        SendCommand(func, new string[] {arg});
     }
 }

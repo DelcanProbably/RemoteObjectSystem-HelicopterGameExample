@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Net.Sockets;
 using System.Net;
+using UnityEngine.Events;
 
 /// <summary>
 /// A RemoteObject is one that represents a physical remote Raspberry Pi.
@@ -12,24 +13,30 @@ using System.Net;
 public class RemoteObject : MonoBehaviour
 {
 
-    public RemotePi remote;
-    // If set, this a RemotePi will be created with the given IP
-    // TODO: Eventually this should be handled at runtime as unique
-    // remotes will need to be identified
-    [SerializeField] string debugIPAddress;
-    [SerializeField] public string remoteName;
-    [SerializeField] public Sprite remoteIcon;
+    // The device this object is linked with.
+    public RemoteDevice device;
+    // Fallback mode allows properly configured components to continue running locally if no RemoteDevice is linked. See documentation for more information.
+    public bool fallbackMode {get; private set;}
+    // List of attached Remote Components
+    [HideInInspector] public List<RemoteComponent> rComponents = new List<RemoteComponent>();
 
     // Automatically activate fallback mode if no device is assigned.
     [SerializeField] bool autoFallbackMode = true;
-    public bool fallbackMode {get; private set;}
+    // If set in Awake, this a RemotePi will be created with the given IP
+    [SerializeField] string debugIPAddress;
+    // The name of this RemoteObject to be displayed to the user.
+    [SerializeField] public string remoteName;
+    // An icon for this RemoteObject to be displayed to the user.
+    [SerializeField] public Sprite remoteIcon;
 
-    public List<RemoteComponent> rComponents = new List<RemoteComponent>();
+    // Little weird, but has some utility.
+    [SerializeField] UnityEvent linkedDeviceUpdateEvent;
+
 
     private void Awake() {
         // If the debug IP is set then we'll establish that connection.
         if (debugIPAddress != "") {
-            remote = new RemotePi(debugIPAddress);
+            device = new RemoteDevice(debugIPAddress);
         }
         RemoteManager.RegisterRemote(this);
         
@@ -39,24 +46,7 @@ public class RemoteObject : MonoBehaviour
         }
     }
 
-    #if UNITY_EDITOR
-    private void Update() {
-        // Debug log info dump when f10 booped
-        if (Input.GetKeyDown(KeyCode.F10)) Debug.Log(remoteName + ", ip: " + remote.ip);
-    }
-    #endif
-
-
-    void SendRawCommand (string command) {
-        if (remote == null) {
-            Debug.Log("SendRawCommand called on RemoteObject with no linked remote. Ignoring.");
-            return;
-        }
-        // TODO: why go through NetHandler instead of just directly calling the RemotePi??? idk?
-        RemoteNetHandler.SendNetMessage(remote, command);
-    }
-
-    // Send da command
+    // Send a command
     public void SendCommand(string module, string func, string[] args) {
         string command = "/";
         command += module + "/" + func;
@@ -66,20 +56,19 @@ public class RemoteObject : MonoBehaviour
         SendRawCommand(command);
     }
 
-    // TODO: this gets a bit redundant...
-    // Send a command from the given module with the given args
-    public void SendCommand (string module, string func, RemoteArgs args) {
-        SendCommand(module, func, args.AsArgs());
-    }
-
-    public void SendCommand (string module, string func, RemoteAsset assetRef) {
-        SendCommand(module, func, assetRef.AsArgs());
+    public void SendRawCommand (string command) {
+        if (device == null) {
+            Debug.Log("SendRawCommand called on RemoteObject with no linked remote. Ignoring.");
+            return;
+        }
+        // TODO: why go through NetHandler instead of just directly calling the RemotePi??? idk?
+        RemoteNetHandler.SendNetMessage(device, command);
     }
 
     // Updates fallback mode dependant on if a Remote is assigned, but only if autoFallbackMode is enabled
     public void UpdateFallbackMode() {
         if (autoFallbackMode) {
-            fallbackMode = remote == null; // i hate this
+            fallbackMode = device == null; // i hate this
         }   
 
         foreach (RemoteComponent component in rComponents) {
@@ -90,7 +79,15 @@ public class RemoteObject : MonoBehaviour
 
     // Resets this object's remote link.
     public void ResetRemote() {
-        remote = null;
+        device = null;
+    }
+
+    public void UpdateLinkedDevice(RemoteDevice newDevice) {
+        device = newDevice;
+        linkedDeviceUpdateEvent.Invoke();
+        foreach(RemoteComponent rc in rComponents) {
+            rc.OnLinkUpdated();
+        }
     }
 
 }

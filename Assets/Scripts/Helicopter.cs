@@ -124,6 +124,7 @@ public class Helicopter : MonoBehaviour
     void SetHeldSoldiers (int value) {
         heldSoldiers = value;
         UIManager.UpdateHelicopterSoldiers(heldSoldiers);
+        remoteHelicopter.UpdateNumSoldiers(value);
     }
 
     public void DepositSoldiers () {

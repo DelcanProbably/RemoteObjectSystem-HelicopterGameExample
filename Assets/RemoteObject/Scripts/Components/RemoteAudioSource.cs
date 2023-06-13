@@ -10,7 +10,7 @@ public class RemoteAudioSource : RemoteComponent {
     public float volume {get; private set;}
 
     protected override void RemoteComponentAwake() {
-        moduleName = "audio";
+        moduleKeyword = "audio";
     }
 
     public override void ActivateFallback() {
@@ -22,15 +22,15 @@ public class RemoteAudioSource : RemoteComponent {
     }
     
     // Play a sound from the remote device.
-    public void Play (RemoteSound sound) {
+    public void Play (RemoteAudioClip clip) {
         if (fallbackMode) {
             // If we're in fallback mode, just play the sound through the attached audio source.
-            AudioClip clip = sound.clip;
-            fallbackAudioSource.PlayOneShot(clip);
+            AudioClip localClip = clip.localClip;
+            fallbackAudioSource.PlayOneShot(localClip);
             return;
         }
 
-        SendCommand("play", sound);
+        SendCommand("play", clip.AsArgs());
     }
 
     // Sets the volume to f (0.0 - 1.0)
@@ -39,7 +39,7 @@ public class RemoteAudioSource : RemoteComponent {
         if (fallbackMode) {
             fallbackAudioSource.volume = f;
         } else {
-            SendCommand("volume", new string[] {f.ToString()});
+            SendCommand("volume", f.ToString());
         }
     }
 

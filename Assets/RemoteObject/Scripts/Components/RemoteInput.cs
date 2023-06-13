@@ -12,7 +12,7 @@ public class RemoteInput : RemoteComponent
 {
     Socket socket;
     protected override void RemoteComponentAwake() {
-        moduleName = "input";
+        moduleKeyword = "input";
     }
 
     void Start() {
@@ -20,10 +20,10 @@ public class RemoteInput : RemoteComponent
     }
 
     void SetupSocket () {
-        socket = remote.remote.socket;
+        socket = remoteObject.device.socket;
         socket.Blocking = false;
         string ip = ((IPEndPoint)socket.LocalEndPoint).Address.ToString();
-        SendCommand("init", new string[] { ip } ); // TODO RemoteArgs exists for a reason
+        SendCommand("init", ip);
     }
 
     private void Update() {
