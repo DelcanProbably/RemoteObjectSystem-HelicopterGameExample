@@ -3196,6 +3196,10 @@ PrefabInstance:
       propertyPath: ipSweepTimeout
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 7163239078841800371, guid: cacfcc1b0bead3d46bd90e9c20cdacdf, type: 3}
+      propertyPath: pauseTimescaleDuringUI
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7163239078841800380, guid: cacfcc1b0bead3d46bd90e9c20cdacdf, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -7992,11 +7996,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 123d4c16b6941224e833282cf0f61e7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rComponents: []
+  autoFallbackMode: 1
   debugIPAddress: 
   remoteName: Helicopter
   remoteIcon: {fileID: -555744780623910725, guid: 36e8856ef822f6c45abccec98722d227, type: 3}
-  autoFallbackMode: 1
-  rComponents: []
+  linkedDeviceUpdateEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8194046849370329861}
+        m_TargetAssemblyTypeName: RemoteHelicopter, Assembly-CSharp
+        m_MethodName: SetPinModes
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &8194046849370329861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8009,7 +8028,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d8e8b9b3e9ff254193a510164c9f636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ledPins: 0d0000000c00000007000000
   propellerSounds:
   - {fileID: 11400000, guid: c479f0f494cf6e24cb1f7b6bfd063d07, type: 2}
   - {fileID: 11400000, guid: 1512262a13d5b62488ecb31d4697481f, type: 2}
   deathSound: {fileID: 11400000, guid: 5d39b23e9bec6e64db2d619d59c1d4f8, type: 2}
+--- !u!114 &8194046849370329864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8194046849370329851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1641fb3e4ab93f142ac1019e05b4d2d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

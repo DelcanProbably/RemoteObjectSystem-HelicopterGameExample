@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69bf3e26ac51e6d42acdba2d4bd9820b, type: 3}
   m_Name: die
   m_EditorClassIdentifier: 
-  clip: {fileID: 8300000, guid: 2b566346821cfc543b96dd30e8023c46, type: 3}
+  localClip: {fileID: 8300000, guid: 2b566346821cfc543b96dd30e8023c46, type: 3}
   clipName: die

@@ -19,7 +19,7 @@ public class Helicopter : MonoBehaviour
     [SerializeField] int maxSoldiers;
 
     // Slightly wacky system to keep UI up to date without heaps of copied code.
-    int heldSoldiers;
+    public int heldSoldiers {get; private set;}
 
     [SerializeField] AudioClip pickupSoldierClip;
     [SerializeField] AudioClip[] chopperClips;

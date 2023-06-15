@@ -13,6 +13,12 @@ public class RemoteHelicopter : MonoBehaviour
         rArduino = GetComponent<RemoteArduino>();
     }
 
+    private void Update() {
+        if (Input.GetKeyDown(KeyCode.F11)) {
+            SetPinModes();
+        }
+    }
+
     public void PlayPropellerSound(int i) {
         rAudioSource.Play(propellerSounds[i]);
     }
@@ -25,6 +31,8 @@ public class RemoteHelicopter : MonoBehaviour
         foreach (int i in ledPins) {
             rArduino.SetPinMode(i, RemoteArduino.PinMode.Output);
         }
+        // Invoke soldier update to avoid incorrect lit pins
+        UpdateNumSoldiers(GetComponent<Helicopter>().heldSoldiers);
     }
 
     public void UpdateNumSoldiers(int soldiers) {
