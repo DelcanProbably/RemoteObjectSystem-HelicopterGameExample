@@ -2158,6 +2158,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1721377299}
+        m_TargetAssemblyTypeName: RemoteAudioSource, Assembly-CSharp
+        m_MethodName: SetVolume
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &704488431
 GameObject:
   m_ObjectHideFlags: 0
@@ -6290,7 +6302,7 @@ MonoBehaviour:
   speedUpgrades: 3
   saleClip: {fileID: 8300000, guid: 920d67e70f65fb74fb556ef14fdae75f, type: 3}
   storePanel: {fileID: 84343730}
-  remoteShop: {fileID: 0}
+  remoteShop: {fileID: 1721377298}
 --- !u!4 &1721377297
 Transform:
   m_ObjectHideFlags: 0
@@ -8026,6 +8038,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Helicopter
       objectReference: {fileID: 0}
+    - target: {fileID: 8194046849370329852, guid: 6bfe073226cd8e842b79eea4510a5e84, type: 3}
+      propertyPath: remoteShop
+      value: 
+      objectReference: {fileID: 1721377298}
     - target: {fileID: 8194046849370329852, guid: 6bfe073226cd8e842b79eea4510a5e84, type: 3}
       propertyPath: chopperClips.Array.size
       value: 2
