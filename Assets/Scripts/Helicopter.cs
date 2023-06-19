@@ -39,6 +39,7 @@ public class Helicopter : MonoBehaviour
 
     // ROS
     RemoteHelicopter remoteHelicopter;
+    [SerializeField] RemoteShop remoteShop;
 
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();
@@ -114,7 +115,10 @@ public class Helicopter : MonoBehaviour
             speedTimer = 0;
         }
         SetHeldSoldiers(heldSoldiers + 1);
-        SoundManager.PlayClip(pickupSoldierClip);
+        // ROS
+        // SoundManager.PlayClip(pickupSoldierClip);
+        remoteHelicopter.OnPickup();
+        // end ROS
     }
 
     void ClearHeldSoldiers() {
@@ -132,7 +136,10 @@ public class Helicopter : MonoBehaviour
             // Tell the game manager we've rescued soldiers
             GameManager.SoldierRescued(heldSoldiers);
             GameManager.AddPoints(heldSoldiers * GameManager.rescuePoints, transform.position);
-            SoundManager.PlayClip(hospitalDepositClip);
+            // ROS
+            // SoundManager.PlayClip(hospitalDepositClip);
+            remoteShop.OnScore();
+            // end ROS
             if (speedTimer < speedBonusThreshold) {
                 Store.AddCoins(heldSoldiers);
                 SpeedyText.SpeedBonus();

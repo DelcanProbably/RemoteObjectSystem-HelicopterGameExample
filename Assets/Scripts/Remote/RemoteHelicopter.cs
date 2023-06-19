@@ -7,6 +7,7 @@ public class RemoteHelicopter : MonoBehaviour
     [SerializeField] int[] ledPins = new int[3];
     [SerializeField] RemoteAudioClip[] propellerSounds;
     [SerializeField] RemoteAudioClip deathSound;
+    [SerializeField] RemoteAudioClip pickupSound;
 
     [SerializeField] float defaultVolume = 0.5f;
 
@@ -31,6 +32,10 @@ public class RemoteHelicopter : MonoBehaviour
 
     public void OnDeath () {
         rAudioSource.Play(deathSound);
+    }
+
+    public void OnPickup () {
+        rAudioSource.Play(pickupSound);
     }
 
     public void SetPinModes() {

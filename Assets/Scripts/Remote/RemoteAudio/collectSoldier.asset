@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 69bf3e26ac51e6d42acdba2d4bd9820b, type: 3}
-  m_Name: cash
+  m_Name: collectSoldier
   m_EditorClassIdentifier: 
-  localClip: {fileID: 8300000, guid: 920d67e70f65fb74fb556ef14fdae75f, type: 3}
-  clipName: cash
+  localClip: {fileID: 8300000, guid: 89637f7951a063a4ca2ecb6aa493e733, type: 3}
+  clipName: collectsoldier

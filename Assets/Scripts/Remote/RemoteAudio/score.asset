@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 69bf3e26ac51e6d42acdba2d4bd9820b, type: 3}
-  m_Name: beep
+  m_Name: score
   m_EditorClassIdentifier: 
   localClip: {fileID: 8300000, guid: 8f38646702864b444acac51d577ccb31, type: 3}
-  clipName: beep
+  clipName: score

@@ -2,17 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(RemoteAudioSource))]
 public class RemoteShop : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    RemoteAudioSource remoteAudioSource;
+    [SerializeField] RemoteAudioClip receiveMoney;
+    [SerializeField] RemoteAudioClip chaching;
+
+    private void Awake() {
+        remoteAudioSource = GetComponent<RemoteAudioSource>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void OnScore () {
+        remoteAudioSource.Play(receiveMoney);
+    }
+
+    public void OnPurchase () {
+        remoteAudioSource.Play(chaching);
     }
 }

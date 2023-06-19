@@ -25,6 +25,9 @@ public class Store : MonoBehaviour
 
     [SerializeField] GameObject storePanel;
 
+    // ROS
+    [SerializeField] RemoteShop remoteShop;
+
     private void Awake() {
         Singleton = this;
         coins = 0;
@@ -92,7 +95,8 @@ public class Store : MonoBehaviour
     }
 
     void PlaySound () {
-        SoundManager.PlayClip(saleClip);
+        // SoundManager.PlayClip(saleClip);
+        remoteShop.OnPurchase();
     }
 
 
