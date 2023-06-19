@@ -8,9 +8,15 @@ public class RemoteHelicopter : MonoBehaviour
     [SerializeField] RemoteAudioClip[] propellerSounds;
     [SerializeField] RemoteAudioClip deathSound;
 
+    [SerializeField] float defaultVolume = 0.5f;
+
     private void Awake() {
         rAudioSource = GetComponent<RemoteAudioSource>();
         rArduino = GetComponent<RemoteArduino>();
+    }
+
+    private void Start() {
+        rAudioSource.SetVolume(defaultVolume);
     }
 
     private void Update() {
